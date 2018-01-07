@@ -31,19 +31,16 @@ function getCMCPrice(symbol) {
  * @return the current balance on Kucoin
  **/
 function getKucoinBalance(currencyID, key, secret) {
-
-  key = "5a5289a8da0f51270c9a87b4";
-  secret = "f431eca1-33f2-433e-a921-265bfb7bbf29";
   
   api_url = "https://api.kucoin.com";
   endpoint = "/v1/account/" + currencyID + "/balance";
   
   var response = callKucoinAPIAuth(api_url, key, secret, endpoint);
   
-  if(response == 0) {
-    // if API GET throws an error (e.g. the coin isn't available on exchange) return 0
-    return 0;
-  }
+  //if(response === "false") {
+    // if API response contains an error (e.g. the coin isn't available on exchange) return 0
+    //return 0;
+  //}
   var data = response.data;
   
   var value = data["balance"];
@@ -73,13 +70,13 @@ function callKucoinAPIAuth(api_url, key, secret, endpoint) {
   
   var url = api_url + endpoint;
   
-  try {
+  //try {
     // Fetch response
     var response = UrlFetchApp.fetch(url, params);
-  } catch(err) {
+  //} catch(err) {
     // if API GET throws an error (e.g. the coin isn't available on exchange) return 0
-    return 0;
-  }
+    //return "false";
+  //}
   
   // Parse response to JSON
   return dataAll = JSON.parse(response.getContentText());

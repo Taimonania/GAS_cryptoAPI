@@ -33,11 +33,9 @@ function getCMCPrice(symbol) {
 function getKucoinBalance(currencyID, key, secret) {
   api_url = "https://api.kucoin.com";
   endpoint = "/v1/account/" + currencyID + "/balance";
-  key = "5a52134d323292680b8c36eb";
-  secret = "caa7b683-854b-40ce-8df6-c1dcca4c7dc0";
   
-  var data = callKucoinAPIAuth(api_url, key, secret, endpoint)
-  var value = data.balance;
+  var data = callKucoinAPIAuth(api_url, key, secret, endpoint).data;
+  var value = data["balance"];
   return value;
 }
 
@@ -119,8 +117,6 @@ function getHitbtcBalance(currencyID, key, secret) {
   var currDict = {}
   api_url = "https://api.hitbtc.com";
   endpoint = "/api/2/trading/balance";
-  key = "f2895b8f693f1dd28a0f1aa043175775";
-  secret = "f08532c57e39cadcad1d7f09e9dad2cd";
   
   var data = callHitbtcAPIAuth(api_url, key, secret, endpoint)
   
